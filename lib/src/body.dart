@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter_webview_plugin/flutter_webview_plugin.dart' as web;
-import 'package:webview_flutter/webview_flutter.dart' as web;
+
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -8,18 +8,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String _url = "https://www.gmail.com";
-  TextEditingController textController;
+  var _url = 'https://www.google.com';
+  var flutterWebViewPlugin = new FlutterWebviewPlugin();
 
-  web.WebViewController _controller;
+//  var _url2 = 'https://www.youtube.com';
 
-  reloadPage(value) {
+  newUrl(value) {
     _url = "https://$value";
-    setState(
-      () {
-        _controller.loadUrl(_url);
-      },
-    );
+    flutterWebViewPlugin.reloadUrl(_url);
   }
 
   @override
@@ -27,21 +23,12 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: TextField(
-          onSubmitted: reloadPage,
-          autocorrect: false,
-          keyboardType: TextInputType.url,
-          controller: textController,
-          decoration: InputDecoration(
-            prefixText: 'https://',
-          ),
+          decoration: InputDecoration(prefixText: 'https://'),
+          onSubmitted: newUrl,
         ),
       ),
-      body: web.WebView(
-        initialUrl: _url,
-        javascriptMode: web.JavascriptMode.unrestricted,
-        onWebViewCreated: (web.WebViewController controller) {
-          _controller = controller;
-        },
+      body: WebviewScaffold(
+        url: _url,
       ),
     );
   }
