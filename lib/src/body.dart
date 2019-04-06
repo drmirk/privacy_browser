@@ -21,14 +21,26 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: TextField(
-          decoration: InputDecoration(prefixText: 'https://'),
-          onSubmitted: newUrl,
-        ),
-      ),
-      body: WebviewScaffold(
-        url: _url,
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            title: TextField(
+              decoration: InputDecoration(
+                prefixText: 'https://',
+              ),
+              keyboardType: TextInputType.url,
+              onSubmitted: newUrl,
+            ),
+            floating: false,
+            pinned: false,
+            snap: false,
+          ),
+          SliverFillRemaining(
+            child: WebviewScaffold(
+              url: _url,
+            ),
+          )
+        ],
       ),
     );
   }
