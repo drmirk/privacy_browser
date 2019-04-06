@@ -13,7 +13,7 @@ class _HomeState extends State<Home> {
 
 //  var _url2 = 'https://www.youtube.com';
 
-  newUrl(value) {
+  openUrl(value) {
     _url = "https://$value";
     flutterWebViewPlugin.reloadUrl(_url);
   }
@@ -21,27 +21,43 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            title: TextField(
-              decoration: InputDecoration(
-                prefixText: 'https://',
-              ),
-              keyboardType: TextInputType.url,
-              onSubmitted: newUrl,
-            ),
-            floating: false,
-            pinned: false,
-            snap: false,
-          ),
-          SliverFillRemaining(
-            child: WebviewScaffold(
-              url: _url,
-            ),
-          )
-        ],
+      appBar: addressBar(),
+      body: WebviewScaffold(
+        url: _url,
       ),
+    );
+  }
+
+  Widget addressBar() {
+    return AppBar(
+      backgroundColor: Colors.white,
+      title: TextField(
+        decoration: InputDecoration(
+          prefixText: 'https://',
+          hintText: "${_url.substring(8)}",
+          isDense: true,
+        ),
+        keyboardType: TextInputType.url,
+        onSubmitted: openUrl,
+      ),
+      actions: <Widget>[
+        PopupMenuButton(
+          icon: Icon(
+            Icons.more_vert,
+            color: Colors.black,
+          ),
+          itemBuilder: (context) {
+            return [
+              PopupMenuItem(
+                child: Text("Forward"),
+              ),
+              PopupMenuItem(
+                child: Text("Backward"),
+              ),
+            ];
+          },
+        ),
+      ],
     );
   }
 }
