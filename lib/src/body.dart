@@ -12,6 +12,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   double progress = 0;
   var url = 'https://www.google.com';
+  var urlTitle = 'Google';
   Icon _searchIcon = Icon(Icons.search);
   Widget _appBarTitle = Text('Google');
 
@@ -19,9 +20,10 @@ class _HomeState extends State<Home> {
 
   openUrl(value) {
     if (isURL(value)) {
+      value = 'https://$value';
       webView.loadUrl(value);
     } else {
-      value = "http://www.google.com/search?q=$value";
+      value = "https://www.google.com/search?q=$value";
       webView.loadUrl(value);
     }
     _searchPressed();
@@ -44,7 +46,7 @@ class _HomeState extends State<Home> {
         onLoadStart: (controller, url) {
           print("started $url");
           setState(() {
-            this.url = url;
+            url = url;
           });
         },
         onProgressChanged: (controller, progress) {
@@ -61,17 +63,25 @@ class _HomeState extends State<Home> {
   void _searchPressed() {
     setState(() {
       if (_searchIcon.icon == Icons.search) {
-        _searchIcon = new Icon(Icons.close);
+        _searchIcon = new Icon(
+          Icons.close,
+          color: Colors.black,
+        );
         _appBarTitle = TextField(
           decoration: InputDecoration(
+            prefix: Text('https://'),
             isDense: true,
           ),
           keyboardType: TextInputType.url,
+          textInputAction: TextInputAction.go,
           onSubmitted: openUrl,
         );
       } else {
-        _searchIcon = Icon(Icons.search);
-        _appBarTitle = Text('Search Example');
+        _searchIcon = Icon(
+          Icons.search,
+          color: Colors.black,
+        );
+        _appBarTitle = Text(urlTitle);
       }
     });
   }
@@ -83,6 +93,7 @@ class _HomeState extends State<Home> {
       actions: <Widget>[
         IconButton(
           icon: _searchIcon,
+          color: Colors.black,
           onPressed: _searchPressed,
         ),
         PopupMenuButton(
