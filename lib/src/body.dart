@@ -134,6 +134,32 @@ class _HomeState extends State<Home> {
               },
             ),
           ),
+          PopupMenuItem(
+            child: ListTile(
+                leading: Icon(Icons.info_outline),
+                title: Text("About"),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: ListTile(
+                          title: Text("Automatically Deletes Cache."),
+                          subtitle: Text("Adblocking coming soon!!!"),
+                        ),
+                        actions: <Widget>[
+                          FlatButton(
+                            child: Text("Dismiss"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          )
+                        ],
+                      );
+                    },
+                  );
+                }),
+          )
         ];
       },
     );
