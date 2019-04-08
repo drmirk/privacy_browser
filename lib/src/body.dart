@@ -57,6 +57,7 @@ class _HomeState extends State<Home> {
               prefix: Text('https://'),
               isDense: true,
             ),
+            autofocus: true,
             keyboardType: TextInputType.url,
             textInputAction: TextInputAction.go,
             onSubmitted: openUrl,
