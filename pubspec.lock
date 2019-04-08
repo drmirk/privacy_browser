@@ -78,6 +78,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_inappbrowser:
+    dependency: "direct main"
+    description:
+      name: flutter_inappbrowser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.1"
   flutter_launcher_icons:
     dependency: "direct main"
     description:
@@ -118,6 +125,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.6"
+  mime:
+    dependency: transitive
+    description:
+      name: mime
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.6+2"
   path:
     dependency: transitive
     description:
@@ -200,6 +214,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.6"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
+  validators:
+    dependency: "direct main"
+    description:
+      name: validators
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0+1"
   vector_math:
     dependency: transitive
     description:
@@ -223,3 +251,4 @@ packages:
     version: "2.1.15"
 sdks:
   dart: ">=2.2.0 <3.0.0"
+  flutter: ">=0.10.1 <2.0.0"

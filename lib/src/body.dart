@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:flutter_inappbrowser/flutter_inappbrowser.dart';
+import 'package:validators/validators.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -8,22 +9,45 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var _url = 'https://www.google.com';
-  var flutterWebViewPlugin = new FlutterWebviewPlugin();
+  var url = 'https://www.google.com';
 
-//  var _url2 = 'https://www.youtube.com';
+  InAppWebViewController webView;
+
+  double progress = 0;
 
   openUrl(value) {
-    _url = "https://$value";
-    flutterWebViewPlugin.reloadUrl(_url);
+    if (isURL(value)) {
+      webView.loadUrl(value);
+    } else {
+      value = "http://www.google.com/search?q=$value";
+      webView.loadUrl(value);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: addressBar(),
-      body: WebviewScaffold(
-        url: _url,
+      body: InAppWebView(
+        initialUrl: url,
+        initialHeaders: {},
+        initialOptions: {},
+        onWebViewCreated: (InAppWebViewController controller) {
+          webView = controller;
+        },
+        onLoadStart: (InAppWebViewController controller, String url) {
+          print("started $url");
+          setState(() {
+            this.url = url;
+          });
+        },
+        onProgressChanged: (InAppWebViewController controller, int progress) {
+          setState(
+            () {
+              this.progress = progress / 100;
+            },
+          );
+        },
       ),
     );
   }
@@ -34,7 +58,7 @@ class _HomeState extends State<Home> {
       title: TextField(
         decoration: InputDecoration(
           prefixText: 'https://',
-          hintText: "${_url.substring(8)}",
+          hintText: "${url.substring(8)}",
           isDense: true,
         ),
         keyboardType: TextInputType.url,
@@ -49,10 +73,34 @@ class _HomeState extends State<Home> {
           itemBuilder: (context) {
             return [
               PopupMenuItem(
-                child: Text("Forward"),
+                child: FlatButton(
+                  child: Text("Forward"),
+                  onPressed: () {
+                    if (webView != null) {
+                      webView.goForward();
+                    }
+                  },
+                ),
               ),
               PopupMenuItem(
-                child: Text("Backward"),
+                child: FlatButton(
+                  child: Text("Backward"),
+                  onPressed: () {
+                    if (webView != null) {
+                      webView.goBack();
+                    }
+                  },
+                ),
+              ),
+              PopupMenuItem(
+                child: FlatButton(
+                  child: Text("Reload"),
+                  onPressed: () {
+                    if (webView != null) {
+                      webView.reload();
+                    }
+                  },
+                ),
               ),
             ];
           },

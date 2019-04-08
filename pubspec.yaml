@@ -26,6 +26,9 @@ dependencies:
   # browser loaded
   flutter_webview_plugin: ^0.3.3
   flutter_launcher_icons: ^0.7.0
+  flutter_inappbrowser: ^1.1.1
+  validators: ^2.0.0+1
+
 
 flutter_icons:
   image_path: "icon/incognito.png"
