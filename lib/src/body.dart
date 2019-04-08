@@ -24,6 +24,7 @@ class _HomeState extends State<Home> {
     );
   }
 
+  // use appBar as addressBar
   Widget addressBar() {
     return AppBar(
       backgroundColor: Colors.white,
@@ -36,9 +37,13 @@ class _HomeState extends State<Home> {
         ),
         popupMenu(),
       ],
+      flexibleSpace: LinearProgressIndicator(
+        value: progress,
+      ),
     );
   }
 
+  // visual change of appBar to searchbar
   void _searchPressed() {
     setState(
       () {
@@ -67,6 +72,7 @@ class _HomeState extends State<Home> {
     );
   }
 
+  // open a new url
   openUrl(value) {
     if (isURL(value)) {
       value = 'https://$value';
@@ -133,10 +139,10 @@ class _HomeState extends State<Home> {
     );
   }
 
+  // main widget to display website
   Widget browserWindow() {
     return InAppWebView(
       initialUrl: url,
-      initialHeaders: {},
       initialOptions: {
         "clearCache": true,
         "clearSessionCache": true,
