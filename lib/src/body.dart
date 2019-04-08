@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_inappbrowser/flutter_inappbrowser.dart';
 import 'package:validators/validators.dart';
-import 'dart:async';
+import 'dart:io';
 
 class Home extends StatefulWidget {
   @override
@@ -104,9 +104,10 @@ class _HomeState extends State<Home> {
           itemBuilder: (context) {
             return [
               PopupMenuItem(
-                child: FlatButton(
-                  child: Text("Forward"),
-                  onPressed: () {
+                child: ListTile(
+                  leading: Icon(Icons.arrow_forward),
+                  title: Text("Forward"),
+                  onTap: () {
                     if (webView != null) {
                       webView.goForward();
                     }
@@ -114,9 +115,10 @@ class _HomeState extends State<Home> {
                 ),
               ),
               PopupMenuItem(
-                child: FlatButton(
-                  child: Text("Backward"),
-                  onPressed: () {
+                child: ListTile(
+                  leading: Icon(Icons.arrow_back),
+                  title: Text("Backward"),
+                  onTap: () {
                     if (webView != null) {
                       webView.goBack();
                     }
@@ -124,12 +126,22 @@ class _HomeState extends State<Home> {
                 ),
               ),
               PopupMenuItem(
-                child: FlatButton(
-                  child: Text("Reload"),
-                  onPressed: () {
+                child: ListTile(
+                  leading: Icon(Icons.refresh),
+                  title: Text("Reload"),
+                  onTap: () {
                     if (webView != null) {
                       webView.reload();
                     }
+                  },
+                ),
+              ),
+              PopupMenuItem(
+                child: ListTile(
+                  leading: Icon(Icons.exit_to_app),
+                  title: Text("Exit"),
+                  onTap: () {
+                    exit(0);
                   },
                 ),
               ),
