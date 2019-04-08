@@ -146,7 +146,7 @@ class _HomeState extends State<Home> {
                       return AlertDialog(
                         title: ListTile(
                           title: Text("Automatically Deletes Cache."),
-                          subtitle: Text("Adblocking coming soon!!!"),
+                          subtitle: Text("Adblock coming soon!!!"),
                         ),
                         actions: <Widget>[
                           FlatButton(
