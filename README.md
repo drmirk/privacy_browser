@@ -1,16 +1,17 @@
-# privacy_browser
+# Privacy Browser
 
-Block ads and tracking
+A privacy focused browser, which automatically cleans cache. So, no history or cookies is left behind.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Built for solely to use in an Android environment. Although it will run in both Android and IOS.
 
-A few resources to get you started if this is your first Flutter project:
+## Author
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+* **Md. Ibrahim Rasel** - *Initial work* - [GitHub](https://github.com/drmirk)
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+
+## License
+
+This project is licensed under the BSD License - see the [LICENSE.md](LICENSE.md) file for details
+
