@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: addressBar2(),
+      appBar: addressBar(),
       body: InAppWebView(
         initialUrl: url,
         initialHeaders: {},
@@ -60,9 +60,9 @@ class _HomeState extends State<Home> {
 
   void _searchPressed() {
     setState(() {
-      if (this._searchIcon.icon == Icons.search) {
-        this._searchIcon = new Icon(Icons.close);
-        this._appBarTitle = TextField(
+      if (_searchIcon.icon == Icons.search) {
+        _searchIcon = new Icon(Icons.close);
+        _appBarTitle = TextField(
           decoration: InputDecoration(
             isDense: true,
           ),
@@ -70,13 +70,13 @@ class _HomeState extends State<Home> {
           onSubmitted: openUrl,
         );
       } else {
-        this._searchIcon = Icon(Icons.search);
-        this._appBarTitle = Text('Search Example');
+        _searchIcon = Icon(Icons.search);
+        _appBarTitle = Text('Search Example');
       }
     });
   }
 
-  Widget addressBar2() {
+  Widget addressBar() {
     return AppBar(
       backgroundColor: Colors.white,
       title: _appBarTitle,
@@ -85,21 +85,6 @@ class _HomeState extends State<Home> {
           icon: _searchIcon,
           onPressed: _searchPressed,
         ),
-      ],
-    );
-  }
-
-  Widget addressBar() {
-    return AppBar(
-      backgroundColor: Colors.white,
-      title: TextField(
-        decoration: InputDecoration(
-          isDense: true,
-        ),
-        keyboardType: TextInputType.url,
-        onSubmitted: openUrl,
-      ),
-      actions: <Widget>[
         PopupMenuButton(
           icon: Icon(
             Icons.more_vert,
