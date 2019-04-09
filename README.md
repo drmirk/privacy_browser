@@ -8,7 +8,7 @@ Built for solely to use in an Android environment. Although it will run in both 
 
 ## Author
 
-* **Md. Ibrahim Rasel** - *Initial work* - [GitHub](https://github.com/drmirk)
+* **Ibrahim Rasel** - *Initial work* - [GitHub](https://github.com/drmirk)
 
 
 ## License
